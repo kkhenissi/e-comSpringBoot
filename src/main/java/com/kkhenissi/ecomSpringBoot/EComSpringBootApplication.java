@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 
 import java.util.Random;
 
@@ -18,6 +19,8 @@ public class EComSpringBootApplication implements CommandLineRunner {
 	private ProductRepository productRepository;
 	@Autowired
 	private CategoryRepository categoryRepository;
+    @Autowired
+	private RepositoryRestConfiguration repositoryRestConfiguration;
 
 	public static void main(String[] args) {
 		SpringApplication.run(EComSpringBootApplication.class, args);
@@ -34,17 +37,18 @@ public class EComSpringBootApplication implements CommandLineRunner {
 			for (int i = 0; i <10 ; i++) {
 				Product p = new Product();
 				p.setName(RandomString.make(18));
-				p.setCurrentPrice(100+rnd.nextInt(10000));
+				p.setCurrentPrice(100+rnd.nextInt(100));
 				p.setAvailable(rnd.nextBoolean());
 				p.setSelected(rnd.nextBoolean());
 				p.setPromotion(rnd.nextBoolean());
-				p.setCategory(c);
+			//	p.setCategory(c);
 				productRepository.save(p);
 			}
 
 
 
 		});
+		repositoryRestConfiguration.exposeIdsFor(Product.class);
 
 	}
 }

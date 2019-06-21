@@ -15,6 +15,7 @@ public class Category implements Serializable {
     private Long id;
     private String name;
     private String description;
-    @OneToMany(mappedBy = "category")
-    private Collection<Product> products;
+    private String urlPhoto;
+//    @OneToMany(mappedBy = "category")
+//    private Collection<Product> products;
 }

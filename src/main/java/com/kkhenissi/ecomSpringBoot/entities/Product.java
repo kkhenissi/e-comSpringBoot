@@ -19,6 +19,6 @@ public class Product implements Serializable {
     private boolean promotion;
     private  boolean available;
     private  String urlPhoto;
-    @ManyToOne
-    private  Category category;
+//    @ManyToOne
+//    private  Category category;
 }
